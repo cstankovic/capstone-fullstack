@@ -109,20 +109,20 @@ app.get('/employees', (req, res)=>{
     });
 });
 
-app.get('/', (req, res)=>{
-    Shift.fetchAll()
-    .then(shiftData =>{
-        shiftData = shiftData.models.map(shiftData=>{
-            return shiftData.attributes;
-        });
-        console.log(shiftData)
-        res.json(shiftData);
-    })
-    .catch(err =>{
-        console.log(err)
-        res.status(500).send("no ogood");
-    })
-})
+// app.get('/', (req, res)=>{
+//     Shift.fetchAll()
+//     .then(shiftData =>{
+//         shiftData = shiftData.models.map(shiftData=>{
+//             return shiftData.attributes;
+//         });
+//         console.log(shiftData)
+//         res.json(shiftData);
+//     })
+//     .catch(err =>{
+//         console.log(err)
+//         res.status(500).send("no ogood");
+//     })
+// })
 
 app.post('/position', (req, res)=>{
     Employee.where({id:req.body.id})
@@ -164,14 +164,14 @@ app.delete('/clear', (req, res) =>{
         })
 
 
-//    new Shift ({id: req.body.id})
-//    .destroy()
-//    .then(shift =>{
-//        res.json(shift.attributes)
-//    })    
-//     .catch(error =>{
-//         console.log(error)
-//     })
+   new Shift ({id: req.body.id})
+   .destroy()
+   .then(shift =>{
+       res.json(shift.attributes)
+   })    
+    .catch(error =>{
+        console.log(error)
+    })
 });
 
 app.post('/submit', (req, res) =>{
